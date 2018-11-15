@@ -132,7 +132,10 @@ class _MyHomePageState extends State<MyHomePage> {
         children: <Widget>[
           isLoading
               ? Text("불러오는 중...")
-              : PhotoView(imageProvider: NetworkImage(item.img)),
+              : PhotoView(
+                  backgroundColor: Colors.white,
+                  imageProvider: NetworkImage(item.img),
+                ),
           Column(
             children: <Widget>[
               Padding(
