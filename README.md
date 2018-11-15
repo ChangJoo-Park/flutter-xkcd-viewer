@@ -1,8 +1,3 @@
-# xkcd_viewer
+# Flutter xkcd Viewer
 
-A Flutter application for xkcd
-
-## Getting Started
-
-For help getting started with Flutter, view our online
-[documentation](https://flutter.io/).
+<img src="https://i.imgur.com/ayQyWei.png" height="600px">
