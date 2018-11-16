@@ -28,6 +28,7 @@ class Xkcd {
     this.img = item['img'];
     this.title = item['title'];
     this.day = item['day'];
+    this.transcript = item['transcript'];
   }
 }
 
@@ -131,18 +132,45 @@ class _MyHomePageState extends State<MyHomePage> {
           child: Stack(
         children: <Widget>[
           isLoading
-              ? Text("불러오는 중...")
+              ? Center(
+                  child: Text(
+                    "Loading...",
+                    style: TextStyle(
+                      fontWeight: FontWeight.normal,
+                      fontSize: 30,
+                    ),
+                  ),
+                )
               : PhotoView(
                   backgroundColor: Colors.white,
                   imageProvider: NetworkImage(item.img),
                 ),
           Column(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.end,
             children: <Widget>[
-              Padding(
+              Container(
                 padding: EdgeInsets.all(10),
-                child: Card(
-                  child: isLoading ? null : Text(title),
-                ),
+                child: isLoading
+                    ? null
+                    : Column(
+                        children: <Widget>[
+                          Text(
+                            '${this.item.num} - ${this.item.title}',
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          Text(
+                            '${item.day}/${item.month}/${item.year}',
+                            style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.normal,
+                            ),
+                          ),
+                        ],
+                      ),
               ),
               Padding(
                 padding: EdgeInsets.all(10),
@@ -155,8 +183,14 @@ class _MyHomePageState extends State<MyHomePage> {
                       onPressed: _getPrev,
                     ),
                     RaisedButton(
-                      child: Text('Today'),
+                      child: Text(
+                        'Latest',
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                      ),
                       onPressed: _requestItem,
+                      color: Colors.blueAccent,
                     ),
                     RaisedButton(
                       child: Text('Random'),
